@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y software-properties-common git \
  && apt-get install -y libx11-dev libasound2-dev libudev-dev libxcb-render0-dev libxcb-shape0-dev libxcb-xfixes0-dev
 
 # Install golang
-RUN add-apt-repository ppa:longsleep/golang-backports && apt-get update && apt-get install -y golang golang-goprotobuf-dev
+RUN add-apt-repository ppa:longsleep/golang-backports && apt-get update && apt-get install -y golang golang-goprotobuf-dev protobuf-compiler
 
 # Lower permission level again
 USER buildagent
