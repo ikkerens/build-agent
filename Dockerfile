@@ -1,4 +1,4 @@
-FROM jetbrains/teamcity-agent:2020.1.5
+FROM jetbrains/teamcity-minimal-agent:2020.1.5
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 ENV PATH "/home/buildagent/.cargo/bin:$PATH"
 USER root
