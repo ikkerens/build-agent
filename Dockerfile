@@ -14,6 +14,7 @@ RUN apt-get update && apt-get install -y software-properties-common git \
 
 # Install golang
 RUN add-apt-repository ppa:longsleep/golang-backports && apt-get update && apt-get install -y golang protobuf-compiler \
+ && go get google.golang.org/protobuf/cmd/protoc-gen-go \
  && go build -o /usr/bin/protoc-gen-go google.golang.org/protobuf/cmd/protoc-gen-go
 
 # Lower permission level again
