@@ -18,9 +18,11 @@ RUN apt-get update && apt-get install -y software-properties-common git \
 RUN apt-get update && apt-get install -y protobuf-compiler wget \
  && wget https://golang.org/dl/go1.15.5.linux-amd64.tar.gz \
  && tar -C /usr/local -xzf go1.15.5.linux-amd64.tar.gz \
- && rm go1.15.5.linux-amd64.tar.gz \
- && export PATH=$PATH:/usr/local/go/bin \
- && go get google.golang.org/protobuf/cmd/protoc-gen-go \
+ && rm go1.15.5.linux-amd64.tar.gz
+
+ENV PATH=$PATH:/usr/local/go/bin
+
+RUN go get google.golang.org/protobuf/cmd/protoc-gen-go \
  && go build -o /usr/bin/protoc-gen-go google.golang.org/protobuf/cmd/protoc-gen-go
 
 # Install docker
