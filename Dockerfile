@@ -15,7 +15,10 @@ RUN apt-get update && apt-get install -y software-properties-common git \
  && apt-get install -y libx11-dev libasound2-dev libudev-dev libxcb-render0-dev libxcb-shape0-dev libxcb-xfixes0-dev libssl-dev
 
 # Install golang
-RUN add-apt-repository ppa:longsleep/golang-backports && apt-get update && apt-get install -y golang protobuf-compiler \
+RUN wget https://golang.org/dl/go1.15.5.linux-amd64.tar.gz 
+ && tar -C /usr/local -xzf go1.15.5.linux-amd64.tar.gz 
+ && export PATH=$PATH:/usr/local/go/bin
+ && apt-get update && apt-get install -y protobuf-compiler \
  && go get google.golang.org/protobuf/cmd/protoc-gen-go \
  && go build -o /usr/bin/protoc-gen-go google.golang.org/protobuf/cmd/protoc-gen-go
 
