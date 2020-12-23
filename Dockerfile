@@ -26,10 +26,10 @@ RUN go get google.golang.org/protobuf/cmd/protoc-gen-go \
  && go build -o /usr/bin/protoc-gen-go google.golang.org/protobuf/cmd/protoc-gen-go
 
 # Install postgres
-ENV PATH=$PATH:/usr/lib/postgresql/12/bin
-RUN apt-get install -y postgresql postgresql-contrib \
- && pg_ctlcluster 12 main start \
- && postgres psql -c "CREATE DATABASE cowspiracy_test;"
+#ENV PATH=$PATH:/usr/lib/postgresql/12/bin
+#RUN apt-get install -y postgresql postgresql-contrib \
+# && pg_ctlcluster 12 main start \
+# && postgres psql -c "CREATE DATABASE cowspiracy_test;"
 
 # Install docker
 RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - \
