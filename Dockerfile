@@ -26,10 +26,9 @@ RUN go get google.golang.org/protobuf/cmd/protoc-gen-go \
  && go build -o /usr/bin/protoc-gen-go google.golang.org/protobuf/cmd/protoc-gen-go
 
 # Install postgres
-#ENV PATH=$PATH:/usr/lib/postgresql/12/bin
-#RUN apt-get install -y postgresql postgresql-contrib \
-# && pg_ctlcluster 12 main start \
-# && postgres psql -c "CREATE DATABASE cowspiracy_test;"
+ENV PATH=$PATH:/usr/lib/postgresql/12/bin
+RUN apt-get install -y postgresql postgresql-contrib && systemctl enable postgresql.service
+
 
 # Install docker
 RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - \
@@ -37,5 +36,11 @@ RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - \
  && apt-get update && apt-get install -y docker-ce docker-ce-cli containerd.io \
  && usermod -aG docker buildagent
 
+# start.sh
+COPY start.sh /usr/bin/start.sh
+RUN chmod +x /usr/bin/start.sh
+
 # Lower permission level
 USER buildagent
+
+CMD ["/usr/bin/start.sh"]
