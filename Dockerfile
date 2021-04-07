@@ -1,4 +1,4 @@
-FROM jetbrains/teamcity-agent:2020.2.1-linux-sudo
+FROM jetbrains/teamcity-agent:2020.2.3-linux-sudo
 
 # Install rust
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
@@ -16,9 +16,9 @@ RUN apt-get update && apt-get install -y software-properties-common git \
 
 # Install golang
 RUN apt-get update && apt-get install -y protobuf-compiler wget \
- && wget https://golang.org/dl/go1.15.5.linux-amd64.tar.gz \
- && tar -C /usr/local -xzf go1.15.5.linux-amd64.tar.gz \
- && rm go1.15.5.linux-amd64.tar.gz
+ && wget https://golang.org/dl/go1.16.3.linux-amd64.tar.gz \
+ && tar -C /usr/local -xzf go1.16.3.linux-amd64.tar.gz \
+ && rm go1.16.3.linux-amd64.tar.gz
 
 ENV PATH=$PATH:/usr/local/go/bin
 
