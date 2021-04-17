@@ -1,4 +1,4 @@
-FROM jetbrains/teamcity-agent:2020.2.3-linux-sudo
+FROM jetbrains/teamcity-agent:2020.2.4-linux-sudo
 
 # Install rust
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
