@@ -17,8 +17,8 @@ RUN apt-get update && apt-get install -y software-properties-common git \
 # Install golang
 RUN apt-get update && apt-get install -y protobuf-compiler wget \
  && wget https://golang.org/dl/go1.17.linux-amd64.tar.gz \
- && tar -C /usr/local -xzf go1.16.3.linux-amd64.tar.gz \
- && rm go1.16.3.linux-amd64.tar.gz
+ && tar -C /usr/local -xzf go1.17.linux-amd64.tar.gz \
+ && rm go1.17.linux-amd64.tar.gz
 
 ENV PATH=$PATH:/usr/local/go/bin
 
