@@ -25,10 +25,6 @@ ENV PATH=$PATH:/usr/local/go/bin
 RUN GO111MODULE=off go get google.golang.org/protobuf/cmd/protoc-gen-go \
  && GO111MODULE=off go build -o /usr/bin/protoc-gen-go google.golang.org/protobuf/cmd/protoc-gen-go
 
-# Install postgres
-# ENV PATH=$PATH:/usr/lib/postgresql/12/bin
-# RUN apt-get install -y postgresql postgresql-contrib && systemctl enable postgresql.service
-
 # Install docker
 RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - \
  && add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" \
@@ -41,12 +37,6 @@ RUN sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://
  && apt-get update \
  && apt-get install -y kubectl
 
-
-# start.sh
-# COPY start.sh /usr/bin/start.sh
-# RUN chmod +x /usr/bin/start.sh
-
 # Lower permission level
 USER buildagent
 
-# CMD ["/usr/bin/start.sh"]
