@@ -43,10 +43,10 @@ RUN sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://
 
 
 # start.sh
-COPY start.sh /usr/bin/start.sh
-RUN chmod +x /usr/bin/start.sh
+# COPY start.sh /usr/bin/start.sh
+# RUN chmod +x /usr/bin/start.sh
 
 # Lower permission level
 USER buildagent
 
-CMD ["/usr/bin/start.sh"]
+# CMD ["/usr/bin/start.sh"]
