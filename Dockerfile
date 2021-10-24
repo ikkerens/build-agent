@@ -26,14 +26,21 @@ RUN GO111MODULE=off go get google.golang.org/protobuf/cmd/protoc-gen-go \
  && GO111MODULE=off go build -o /usr/bin/protoc-gen-go google.golang.org/protobuf/cmd/protoc-gen-go
 
 # Install postgres
-ENV PATH=$PATH:/usr/lib/postgresql/12/bin
-RUN apt-get install -y postgresql postgresql-contrib && systemctl enable postgresql.service
+# ENV PATH=$PATH:/usr/lib/postgresql/12/bin
+# RUN apt-get install -y postgresql postgresql-contrib && systemctl enable postgresql.service
 
 # Install docker
 RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - \
  && add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" \
  && apt-get update && apt-get install -y docker-ce docker-ce-cli containerd.io \
  && usermod -aG docker buildagent
+ 
+# Install kubectl
+RUN sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg \
+ && echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list \
+ && apt-get update \
+ && apt-get install -y kubectl
+
 
 # start.sh
 COPY start.sh /usr/bin/start.sh
