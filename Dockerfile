@@ -3,6 +3,7 @@ FROM jetbrains/teamcity-agent:2022.04.2-linux-sudo
 # Install rust
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 ENV PATH "/home/buildagent/.cargo/bin:$PATH"
+RUN rustup component add llvm-tools-preview
 
 # Increase permission level
 USER root
