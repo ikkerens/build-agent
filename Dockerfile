@@ -43,6 +43,5 @@ RUN sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://
 USER buildagent
 
 # Install cross for rust
-ENV CROSS_CONTAINER_IN_CONTAINER=true
-RUN USER=buildagent cargo install cross
+RUN cargo install cross
 
