@@ -3,7 +3,7 @@ FROM jetbrains/teamcity-agent:2022.04.3-linux-sudo
 # Install rust
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 ENV PATH "/home/buildagent/.cargo/bin:$PATH"
-RUN rustup component add llvm-tools-preview
+RUN rustup component add llvm-tools-preview && rustup target add x86_64-pc-windows-gnu
 
 # Increase permission level
 USER root
@@ -13,7 +13,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 # Generic dependencies
 RUN apt-get update && apt-get install -y software-properties-common git \
 # Game dependencies
- && apt-get install -y libx11-dev libasound2-dev libudev-dev libxcb-render0-dev libxcb-shape0-dev libxcb-xfixes0-dev libssl-dev build-essential pkg-config
+ && apt-get install -y libx11-dev libasound2-dev libudev-dev libxcb-render0-dev libxcb-shape0-dev libxcb-xfixes0-dev libssl-dev build-essential pkg-config mingw-w64
 
 # Install golang
 ARG GOLANG_VERSION=1.19
@@ -41,7 +41,3 @@ RUN sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://
 
 # Lower permission level
 USER buildagent
-
-# Install cross for rust
-RUN cargo install cross
-
