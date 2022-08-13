@@ -5,6 +5,10 @@ RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 ENV PATH "/home/buildagent/.cargo/bin:$PATH"
 RUN rustup component add llvm-tools-preview
 
+# Install cross for rust
+ENV CROSS_CONTAINER_IN_CONTAINER=true
+RUN cargo install cross
+
 # Increase permission level
 USER root
 
