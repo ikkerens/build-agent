@@ -1,6 +1,7 @@
 FROM jetbrains/teamcity-agent:2022.10-linux-sudo
 
 # Install rust
+# This is a comment to trigger CI, I've done this 1 time now.
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 ENV PATH "/home/buildagent/.cargo/bin:$PATH"
 RUN rustup component add llvm-tools-preview && rustup target add x86_64-pc-windows-gnu
