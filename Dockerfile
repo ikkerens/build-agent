@@ -1,4 +1,4 @@
-FROM jetbrains/teamcity-agent:2022.10-linux-sudo
+FROM jetbrains/teamcity-agent:2022.10.1-linux-sudo
 
 # Install rust
 # This is a comment to trigger CI, I've done this 1 time now.
