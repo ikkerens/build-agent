@@ -17,7 +17,7 @@ RUN apt-get update && apt-get install -y software-properties-common git \
  && apt-get install -y libx11-dev libasound2-dev libudev-dev libxcb-render0-dev libxcb-shape0-dev libxcb-xfixes0-dev libssl-dev build-essential pkg-config mingw-w64
 
 # Install golang
-ARG GOLANG_VERSION=1.19.3
+ARG GOLANG_VERSION=1.19.4
 RUN apt-get update && apt-get install -y protobuf-compiler wget \
  && wget https://golang.org/dl/go$GOLANG_VERSION.linux-amd64.tar.gz \
  && tar -C /usr/local -xzf go$GOLANG_VERSION.linux-amd64.tar.gz \
