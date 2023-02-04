@@ -1,4 +1,4 @@
-FROM jetbrains/teamcity-agent:2022.10.1-linux-sudo
+FROM jetbrains/teamcity-agent:2022.10.2-linux-sudo
 
 # Install rust
 # This is a comment to trigger CI, I've done this 1 time now.
@@ -17,7 +17,7 @@ RUN apt-get update && apt-get install -y software-properties-common git \
  && apt-get install -y libx11-dev libasound2-dev libudev-dev libxcb-render0-dev libxcb-shape0-dev libxcb-xfixes0-dev libssl-dev build-essential pkg-config mingw-w64
 
 # Install golang
-ARG GOLANG_VERSION=1.19.5
+ARG GOLANG_VERSION=1.20
 RUN apt-get update && apt-get install -y protobuf-compiler wget \
  && wget https://golang.org/dl/go$GOLANG_VERSION.linux-amd64.tar.gz \
  && tar -C /usr/local -xzf go$GOLANG_VERSION.linux-amd64.tar.gz \
