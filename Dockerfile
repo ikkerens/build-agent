@@ -12,7 +12,7 @@ USER root
 # Install dependencies
 ENV DEBIAN_FRONTEND=noninteractive
 # Generic dependencies
-RUN apt-get update && apt-get install -y software-properties-common git \
+RUN apt-get update && apt-get install -y ca-certificates software-properties-common git \
 # Game dependencies
  && apt-get install -y libx11-dev libasound2-dev libudev-dev libxcb-render0-dev libxcb-shape0-dev libxcb-xfixes0-dev libssl-dev build-essential pkg-config mingw-w64
 
@@ -35,9 +35,9 @@ RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - \
  && usermod -aG docker buildagent
  
 # Install kubectl
-RUN sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg \
- && echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list \
- && apt-get update \
+RUN sudo curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-archive-keyring.gpg \
+ && echo "deb [signed-by=/etc/apt/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list \
+ && apt-get update
  && apt-get install -y kubectl
 
 # Lower permission level
