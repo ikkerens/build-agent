@@ -35,8 +35,8 @@ RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - \
  && usermod -aG docker buildagent
  
 # Install kubectl
-RUN sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg \
- && echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list \
+RUN curl -fsSL /usr/share/keyrings/kubernetes-archive-keyring.gpg | apt-key add - \
+ && add-apt-repository "deb https://apt.kubernetes.io/ kubernetes-xenial main" \
  && apt-get update \
  && apt-get install -y kubectl
 
