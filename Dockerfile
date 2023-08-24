@@ -11,6 +11,11 @@ USER root
 
 # Install dependencies
 ENV DEBIAN_FRONTEND=noninteractive
+
+# Temp: Add perforce until Ubuntu/perforce get their stuff together
+RUN curl -fsSL https://package.perforce.com/perforce.pubkey | apt-key add - \
+ && add-apt-repository "deb [arch=amd64] https://package.perforce.com/apt/ubuntu $(lsb_release -cs) release"
+
 # Generic dependencies
 RUN apt-get update && apt-get install -y ca-certificates software-properties-common git \
 # Game dependencies
